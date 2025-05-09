@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "./api/data.json";
 import mainSummary from "./config/gemini";
 import { Input } from "@/components/ui/input";
@@ -52,6 +52,24 @@ function App() {
   });
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [activeHistoryIdx, setActiveHistoryIdx] = useState<number | null>(null);
+
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('searchHistory');
+    if (savedHistory) {
+      try {
+        const parsedHistory = JSON.parse(savedHistory);
+        if (Array.isArray(parsedHistory)) {
+          setSearchHistory(parsedHistory);
+        }
+      } catch (e) {
+        console.error('Failed to parse search history from localStorage', e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  }, [searchHistory]);
 
   const consultants: Consultant[] = data;
 
@@ -153,6 +171,25 @@ function App() {
     handleEvaluate(desc);
   };
 
+  const handleHistoryDelete = (idx: number) => {
+    const newHistory = [...searchHistory];
+    newHistory.splice(idx, 1);
+    setSearchHistory(newHistory);
+    
+    // Reset active index if we deleted the active item
+    if (activeHistoryIdx === idx) {
+      setActiveHistoryIdx(null);
+    } else if (activeHistoryIdx !== null && activeHistoryIdx > idx) {
+      // Adjust the active index if we deleted an item before it
+      setActiveHistoryIdx(activeHistoryIdx - 1);
+    }
+  };
+
+  const handleHistoryClear = () => {
+    setSearchHistory([]);
+    setActiveHistoryIdx(null);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-violet-50 dark:from-indigo-950 dark:via-gray-950 dark:to-violet-950 text-foreground">
       {/* Header */}
@@ -165,10 +202,12 @@ function App() {
           searchHistory={searchHistory}
           activeHistoryIdx={activeHistoryIdx}
           onHistoryClick={handleHistoryClick}
+          onHistoryDelete={handleHistoryDelete}
+          onHistoryClear={handleHistoryClear}
         />
         {/* Main Panel */}
-        <main className="flex-1 flex flex-col items-stretch min-w-0">
-          <div className="max-w-4xl mx-auto w-full py-8 px-2 md:px-8 space-y-6">
+        <main className="flex-1 flex flex-col items-stretch min-w-0 pt-28 sm:pt-20">
+          <div className="max-w-5xl mx-auto w-full py-8 px-2 md:px-8 space-y-6">
             <Card className="border border-indigo-200 dark:border-indigo-800/20 shadow-md bg-white/90 dark:bg-indigo-950/20 backdrop-blur-sm">
               <CardHeader className="bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20">
                 <CardTitle className="text-indigo-700 dark:text-indigo-300 py-2">Job Description</CardTitle>
@@ -262,7 +301,7 @@ function App() {
               </CardContent>
             </Card>
 
-            <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredConsultants.map((consultant) => (
                 <ConsultantCard key={consultant?.id} consultant={consultant} evaluation={evaluations[consultant.id]} loading={loading} />
               ))}

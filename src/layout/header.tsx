@@ -10,8 +10,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
   return (
-    <header className={`w-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-700 text-primary-foreground z-50 transition-all ${sticky ? 'sticky top-0 shadow-md backdrop-blur-sm bg-primary/95' : ''}`}>
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header className={`w-full bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-700 text-primary-foreground z-50 transition-all ${sticky ? 'sticky top-0 shadow-md backdrop-blur-sm bg-primary/95' : 'fixed top-0 shadow-lg backdrop-blur-sm bg-primary/80'}`}>
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
         <div className="flex items-center gap-3">
           <div className="relative">
             <img src={logo} alt="Logo" className={`h-12 w-12 rounded-xl shadow-lg ${sticky ? '' : 'animate-pulse'}`} />
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold tracking-tight">Smart Job Match</h1>
+              <h1 className="text-lg md:text-2xl font-bold tracking-tight">Smart Job Match</h1>
               <Badge variant="outline" className="bg-white/20 text-white text-[10px] px-1.5 py-0 border-white/30 uppercase tracking-wider">Beta</Badge>
             </div>
             <p className="text-xs text-white/90">Powered by AI • Find the perfect consultant</p>

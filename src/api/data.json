@@ -35,7 +35,7 @@
   {
     "id": 4,
     "name": "David Lee",
-    "location": "Stockholm",
+    "location": "Paris",
     "experience": 7,
     "skills": ["React", "Next.js", "GraphQL"],
     "bio": "Frontend engineer focused on modern web technologies.",
@@ -178,7 +178,7 @@
   {
     "id": 17,
     "name": "Quinn Nguyen",
-    "location": "Prague",
+    "location": "Dubai",
     "experience": 4,
     "skills": ["Ruby", "Rails", "GraphQL"],
     "bio": "Full stack developer specializing in rapid prototyping.",
@@ -200,7 +200,7 @@
   {
     "id": 19,
     "name": "Sven Eriksson",
-    "location": "Stockholm",
+    "location": "London",
     "experience": 15,
     "skills": ["Go", "Kubernetes", "Docker"],
     "bio": "Systems engineer focused on high-performance microservices.",
