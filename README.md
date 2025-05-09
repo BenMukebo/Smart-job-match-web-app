@@ -6,6 +6,12 @@ A modern **React + TypeScript + TailwindCSS** application that helps clients eva
 
 ![Screenshot](public/image1.png)
 
+---
+
+## 🌐 Live Demo
+
+[https://smart-job-match-web-app.vercel.app/](https://smart-job-match-web-app.vercel.app/)
+
 ## 🚀 Features
 
 - **AI-Powered Consultant Evaluation:**  
