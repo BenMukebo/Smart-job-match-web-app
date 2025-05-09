@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 export function ModeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
+  const [theme, setTheme] = useState<"light" | "dark" | "system">("dark");
 
   useEffect(() => {
     const root = window.document.documentElement;

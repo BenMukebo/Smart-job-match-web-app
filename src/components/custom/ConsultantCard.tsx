@@ -2,30 +2,11 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-type Consultant = {
-  id: number;
-  name: string;
-  location: string;
-  experience: number;
-  skills: string[];
-  bio: string;
-  jobType: string;
-  workplace: string;
-  hourlyRate: number;
-};
-
-type Evaluation = {
-  fitScore: number;
-  summary: string;
-  pros: string[];
-  cons: string[];
-  questions: string[];
-};
+import type { ConsultantData, EvaluationData } from "@/lib/types";
 
 interface ConsultantProps {
-  consultant: Consultant;
-  evaluation?: Evaluation;
+  consultant: ConsultantData;
+  evaluation?: EvaluationData;
   loading: boolean;
 }
 
