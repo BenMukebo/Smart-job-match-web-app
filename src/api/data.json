@@ -1,0 +1,278 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "location": "London",
+    "experience": 8,
+    "skills": ["React", "Node.js", "TypeScript"],
+    "bio": "Full stack developer with a passion for scalable web apps.",
+    "jobType": "Full-time",
+    "workplace": "Remote",
+    "hourlyRate": 95
+  },
+  {
+    "id": 2,
+    "name": "Bob Smith",
+    "location": "Berlin",
+    "experience": 5,
+    "skills": ["Vue", "Python", "Django"],
+    "bio": "Backend specialist with strong frontend experience.",
+    "jobType": "Contract",
+    "workplace": "Hybrid",
+    "hourlyRate": 85
+  },
+  {
+    "id": 3,
+    "name": "Carla Gomez",
+    "location": "Madrid",
+    "experience": 10,
+    "skills": ["Angular", "Java", "Spring"],
+    "bio": "Enterprise software architect and team lead.",
+    "jobType": "Full-time",
+    "workplace": "On-site",
+    "hourlyRate": 110
+  },
+  {
+    "id": 4,
+    "name": "David Lee",
+    "location": "Paris",
+    "experience": 7,
+    "skills": ["React", "Next.js", "GraphQL"],
+    "bio": "Frontend engineer focused on modern web technologies.",
+    "jobType": "Part-time",
+    "workplace": "Remote",
+    "hourlyRate": 90
+  },
+  {
+    "id": 5,
+    "name": "Eva Müller",
+    "location": "Munich",
+    "experience": 6,
+    "skills": ["Node.js", "Express", "MongoDB"],
+    "bio": "Backend developer with cloud deployment expertise.",
+    "jobType": "Contract",
+    "workplace": "Remote",
+    "hourlyRate": 88
+  },
+  {
+    "id": 6,
+    "name": "Frank Wang",
+    "location": "Paris",
+    "experience": 9,
+    "skills": ["React", "Redux", "TypeScript"],
+    "bio": "UI/UX enthusiast and frontend mentor.",
+    "jobType": "Full-time",
+    "workplace": "Hybrid",
+    "hourlyRate": 100
+  },
+  {
+    "id": 7,
+    "name": "Grace Kim",
+    "location": "Oslo",
+    "experience": 4,
+    "skills": ["Python", "Flask", "Docker"],
+    "bio": "DevOps and backend automation specialist.",
+    "jobType": "Contract",
+    "workplace": "Remote",
+    "hourlyRate": 82
+  },
+  {
+    "id": 8,
+    "name": "Hassan Ali",
+    "location": "Copenhagen",
+    "experience": 11,
+    "skills": ["JavaScript", "PHP", "Laravel"],
+    "bio": "Versatile developer with a focus on web APIs.",
+    "jobType": "Full-time",
+    "workplace": "On-site",
+    "hourlyRate": 11
+  },
+  {
+    "id": 9,
+    "name": "Isabel Rossi",
+    "location": "Rome",
+    "experience": 3,
+    "skills": ["React", "Svelte", "CSS"],
+    "bio": "Creative frontend developer and designer.",
+    "jobType": "Part-time",
+    "workplace": "Hybrid",
+    "hourlyRate": 7
+  },
+  {
+    "id": 10,
+    "name": "Jonas Berg",
+    "location": "Helsinki",
+    "experience": 12,
+    "skills": [".NET", "Azure", "C#"],
+    "bio": "Cloud architect and senior backend engineer.",
+    "jobType": "Contract",
+    "workplace": "Remote",
+    "hourlyRate": 120
+  },
+  {
+    "id": 11,
+    "name": "Kate Wilson",
+    "location": "Amsterdam",
+    "experience": 8,
+    "skills": ["React Native", "JavaScript", "Swift"],
+    "bio": "Mobile app developer specialized in cross-platform solutions.",
+    "jobType": "Full-time",
+    "workplace": "Remote",
+    "hourlyRate": 9
+  },
+  {
+    "id": 12,
+    "name": "Leo Martinez",
+    "location": "Barcelona",
+    "experience": 5,
+    "skills": ["Python", "Django", "PostgreSQL"],
+    "bio": "Data-driven backend developer with API expertise.",
+    "jobType": "Contract",
+    "workplace": "Hybrid",
+    "hourlyRate": 85
+  },
+  {
+    "id": 13,
+    "name": "Maria Santos",
+    "location": "Lisbon",
+    "experience": 7,
+    "skills": ["Angular", "RxJS", "Firebase"],
+    "bio": "Frontend specialist with extensive state management experience.",
+    "jobType": "Full-time",
+    "workplace": "On-site",
+    "hourlyRate": 19
+  },
+  {
+    "id": 14,
+    "name": "Niko Patel",
+    "location": "Dublin",
+    "experience": 9,
+    "skills": ["AWS", "Terraform", "Kubernetes"],
+    "bio": "DevOps engineer with infrastructure automation expertise.",
+    "jobType": "Contract",
+    "workplace": "Remote",
+    "hourlyRate": 15
+  },
+  {
+    "id": 15,
+    "name": "Olivia Chen",
+    "location": "Vienna",
+    "experience": 6,
+    "skills": ["Vue", "Nuxt.js", "Jest"],
+    "bio": "Frontend developer focused on testable, maintainable code.",
+    "jobType": "Part-time",
+    "workplace": "Remote",
+    "hourlyRate": 20
+  },
+  {
+    "id": 16,
+    "name": "Paul Thompson",
+    "location": "Brussels",
+    "experience": 11,
+    "skills": ["Java", "Spring Boot", "Microservices"],
+    "bio": "Enterprise architect with expertise in distributed systems.",
+    "jobType": "Full-time",
+    "workplace": "Hybrid",
+    "hourlyRate": 11
+  },
+  {
+    "id": 17,
+    "name": "Quinn Nguyen",
+    "location": "Dubai",
+    "experience": 4,
+    "skills": ["Ruby", "Rails", "GraphQL"],
+    "bio": "Full stack developer specializing in rapid prototyping.",
+    "jobType": "Contract",
+    "workplace": "Remote",
+    "hourlyRate": 80
+  },
+  {
+    "id": 18,
+    "name": "Rachel Cohen",
+    "location": "Warsaw",
+    "experience": 8,
+    "skills": ["React", "Redux", "Node.js"],
+    "bio": "JavaScript developer with strong frontend architecture skills.",
+    "jobType": "Full-time",
+    "workplace": "On-site",
+    "hourlyRate": 95
+  },
+  {
+    "id": 19,
+    "name": "Sven Eriksson",
+    "location": "London",
+    "experience": 15,
+    "skills": ["Go", "Kubernetes", "Docker"],
+    "bio": "Systems engineer focused on high-performance microservices.",
+    "jobType": "Contract",
+    "workplace": "Remote",
+    "hourlyRate": 13
+  },
+  {
+    "id": 20,
+    "name": "Tara Wilson",
+    "location": "Edinburgh",
+    "experience": 7,
+    "skills": ["Python", "Machine Learning", "TensorFlow"],
+    "bio": "AI specialist with practical ML implementation experience.",
+    "jobType": "Part-time",
+    "workplace": "Hybrid",
+    "hourlyRate": 10
+  },
+  {
+    "id": 21,
+    "name": "Uma Patel",
+    "location": "Amsterdam",
+    "experience": 6,
+    "skills": ["JavaScript", "React", "Node.js"],
+    "bio": "Full stack developer with a focus on user experience.",
+    "jobType": "Full-time",
+    "workplace": "Remote",
+    "hourlyRate": 25
+  },
+  {
+    "id": 22,
+    "name": "Victor Hugo",
+    "location": "Barcelona",
+    "experience": 5,
+    "skills": ["PHP", "Laravel", "MySQL"],
+    "bio": "Backend developer with a passion for clean code.",
+    "jobType": "Contract",
+    "workplace": "Hybrid",
+    "hourlyRate": 17
+  },
+  {
+    "id": 23,
+    "name": "Wendy Zhang",
+    "location": "Berlin",
+    "experience": 9,
+    "skills": ["Java", "Spring", "Hibernate"],
+    "bio": "Senior backend developer with a focus on performance.",
+    "jobType": "Full-time",
+    "workplace": "On-site",
+    "hourlyRate": 16
+  },
+  {
+    "id": 24,
+    "name": "Xavier Lopez",
+    "location": "Madrid",
+    "experience": 4,
+    "skills": ["React", "Next.js", "TypeScript"],
+    "bio": "Frontend developer with a passion for modern frameworks.",
+    "jobType": "Part-time",
+    "workplace": "Remote",
+    "hourlyRate": 10
+  },
+  {
+    "id": 25,
+    "name": "Yara Al-Mansoori",
+    "location": "Dubai",
+    "experience": 8,
+    "skills": ["Node.js", "Express", "MongoDB"],
+    "bio": "Full stack developer with cloud deployment expertise.",
+    "jobType": "Contract",
+    "workplace": "Hybrid",
+    "hourlyRate": 15
+  }
+]
+
