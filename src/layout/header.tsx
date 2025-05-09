@@ -1,7 +1,7 @@
 import React from 'react';
 import { Search, Sparkles } from 'lucide-react';
 import logo from '../assets/logo.svg';
-import { ModeToggle } from '@/components/mode-toggle';
+import { ModeToggle } from '@/components/ModeToggle';
 import { Badge } from '@/components/ui/badge';
 
 interface HeaderProps {
