@@ -43,7 +43,7 @@ const MainPanel: React.FC<MainProps> = ({
   const uniqueWorkplaces = Array.from(new Set(consultants.map((c) => c.workplace)));
 
   return (
-    <main className="flex-1 flex flex-col items-stretch min-w-0 pt-28 sm:pt-20">
+    <section className="flex-1 flex flex-col items-stretch min-w-0 pt-28 sm:pt-20">
       <div className="max-w-5xl mx-auto w-full py-8 px-2 md:px-8 space-y-6">
         <Card className="border border-indigo-200 dark:border-indigo-800/20 shadow-md bg-white/90 dark:bg-indigo-950/20 backdrop-blur-sm">
           <CardHeader className="bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20">
@@ -155,7 +155,7 @@ const MainPanel: React.FC<MainProps> = ({
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

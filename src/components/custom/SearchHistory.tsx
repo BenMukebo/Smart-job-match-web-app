@@ -221,7 +221,7 @@ const SearchHistory: React.FC<Props> = ({
   );
 
   return (
-    <>
+    <aside>
       {/* Mobile view */}
       <MobileSearchHistory />
 
@@ -237,7 +237,7 @@ const SearchHistory: React.FC<Props> = ({
 
       {/* Show toggle when collapsed */}
       {!isOpen && <CollapsedToggle />}
-    </>
+    </aside>
   );
 };
 
