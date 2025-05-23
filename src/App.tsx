@@ -1,9 +1,10 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 import AppRoutes from "./routes/AppRoutes";
+import { LoadingFallback } from "@/components/LoaderFallback";
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingFallback />}>
       <AppRoutes />
     </Suspense>
   );
