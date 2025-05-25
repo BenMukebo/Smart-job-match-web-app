@@ -8,24 +8,27 @@ A modern **React + TypeScript + TailwindCSS** application that helps clients eva
 
 ## 🚀 Features
 
-- **AI-Powered Consultant Evaluation:**  
+- ✅ **AI-Powered Consultant Evaluation:**  
   Uses Google's Gemini API to evaluate consultant profiles against job descriptions and provide detailed insights.
 
-- **Customized Fit Analysis:**  
+- ✅ **Customized Fit Analysis:**  
   Generates personalized fit scores, summaries, pros, cons, and suggested interview questions for each consultant.
 
-- **Advanced Filtering System:**  
+- ✅ **Advanced Filtering System:**  
   Filter consultants by location, job type, workplace preference, experience level, and keywords.
 
-- **Persistent Search History:**  
+- ✅ **Persistent Search History:**  
   Saves job description searches in local storage for easy reference and reuse.
 
-- **Collapsible Sidebar:**  
+- ✅ **Collapsible Sidebar:**  
   Responsive design with a collapsible search history sidebar that adapts to all screen sizes.
 
-- **Modern UI Components:**  
+- ✅ **Modern UI Components:**  
   Built with shadcn/ui and Tailwind CSS for a clean, accessible interface.
 
+- ✅ **Nested Routes & Code-Splitting**
+ Uses React Router v7.6.0 nested routes, with each route lazy-loaded for modularity and performance.
+  Performance optimization technique in modern JavaScript applications (like React apps) that involves breaking up the code into smaller chunks so that only the code needed for the current page or feature is loaded at first.
 ---
 
 ## 🗂️ Application Structure
@@ -89,6 +92,7 @@ The application sends structured prompts to the AI and processes JSON responses 
 
 - [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/) for fast development and building
+- [React-route](https://reactrouter.com/start/declarative/installation) a multi-strategy router for React
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [shadcn/ui](https://ui.shadcn.com/) for accessible UI components
 - [Google Gemini API](https://ai.google.dev/docs/gemini_api) for AI evaluations
@@ -96,6 +100,16 @@ The application sends structured prompts to the AI and processes JSON responses 
 - [Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) Local storage for search history persistence
 
 ---
+
+## 🧠 What You Get
+| Feature           | Implementation                                 |
+| ----------------- | ---------------------------------------------- |
+| ✅ Lazy Loading    | `React.lazy()` and `Suspense`                  |
+| ✅ Code Splitting  | `import()` dynamically splits JS files         |
+| ✅ Nested Routing  | `React Router` with `<Outlet />`               |
+| ✅ Fast Load Time  | Small initial JS bundle, loads pages on demand |
+| ✅ Context Support | Auth and global state via `Context.Provider`   |
+
 
 ## 🚀 Getting Started
 
