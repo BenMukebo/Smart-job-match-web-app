@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from "react";
+import { useSearchParams } from 'react-router';
 
 import data from "@/api/data.json";
 import mainSummary from "@/config/gemini";
@@ -9,18 +10,38 @@ import type { ConsultantData, EvaluationData, FilterQuery } from "@/lib/types";
 import MainPanel from "@/components/MainPanel";
 
 const Home: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [jobDesc, setJobDesc] = useState("");
   const [evaluations, setEvaluations] = useState<Record<number, EvaluationData>>({});
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState<FilterQuery>({
-    location: "",
-    experience: "",
-    keyword: "",
-    jobType: "",
-    workplace: "",
+    location: searchParams.get('location') || "",
+    experience: searchParams.get('experience') || "",
+    keyword: searchParams.get('keyword') || "",
+    jobType: searchParams.get('jobType') || "",
+    workplace: searchParams.get('workplace') || "",
   });
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [activeHistoryIdx, setActiveHistoryIdx] = useState<number | null>(null);
+
+
+  const handleFilterChange = (key: keyof FilterQuery, value: string) => {
+    setFilters((prev) => {
+      const newFilters = { ...prev, [key]: value };
+      const newParams = new URLSearchParams(searchParams); // not empty
+
+      Object.entries(newFilters).forEach(([k, v]) => {
+        if (v) {
+          newParams.set(k, v);
+        } else {
+          newParams.delete(k);
+        }
+      });
+      setSearchParams(newParams);
+      return newFilters;
+    });
+  };
 
   useEffect(() => {
     const savedHistory = localStorage.getItem('searchHistory');
@@ -156,7 +177,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-1 min-h-0 relative">
+    <div className="flex flex-1 min-h-screen relative">
     {/* Sidebar */}
     <SearchHistory
       searchHistory={searchHistory}
@@ -170,7 +191,7 @@ const Home: React.FC = () => {
       jobDesc={jobDesc}
       setJobDesc={setJobDesc}
       filters={filters}
-      setFilters={setFilters}
+      handleFilterChange={handleFilterChange}
       loading={loading}
       handleEvaluate={handleEvaluate}
       filteredConsultants={filteredConsultants}

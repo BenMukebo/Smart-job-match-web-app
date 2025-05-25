@@ -29,11 +29,11 @@ const ConsultantCard: React.FC<ConsultantProps> = ({
   };
 
   return (
+    <li key={consultant.id}>
     <Card
-      key={consultant.id}
-      className="flex flex-col border border-indigo-200 dark:border-indigo-800/20 shadow-md bg-white/90 dark:bg-indigo-950/20 backdrop-blur-sm hover:shadow-lg transition-shadow"
+      className="h-full flex flex-col gap-2 p-0 border border-indigo-200 dark:border-indigo-800/20 shadow-md bg-white/90 dark:bg-indigo-950/20 backdrop-blur-sm hover:shadow-lg transition-shadow"
     >
-      <CardHeader className="p-2 bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20">
+      <CardHeader className="p-3 bg-gradient-to-r from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar className="h-12 w-12 border-2 border-primary/20 shadow-sm">
@@ -72,7 +72,7 @@ const ConsultantCard: React.FC<ConsultantProps> = ({
           </Badge>
         </div>
       </CardHeader>
-      <CardContent className="flex-1 flex flex-col gap-2">
+      <CardContent className="flex-1 flex flex-col gap-2 p-3">
         <div className="mb-2">{consultant.bio}</div>
         {evaluation ? (
           <>
@@ -123,6 +123,7 @@ const ConsultantCard: React.FC<ConsultantProps> = ({
         )}
       </CardContent>
     </Card>
+    </li>
   );
 };
 
