@@ -20,7 +20,7 @@ type MainProps = {
   setJobDesc: (desc: string) => void;
   loading: boolean;
   filters: FilterQuery;
-  setFilters: React.Dispatch<React.SetStateAction<FilterQuery>>;
+  handleFilterChange: (key: keyof FilterQuery, value: string) => void;
   handleEvaluate: () => void;
   evaluations: Record<number, EvaluationData>;
   filteredConsultants: ConsultantData[];
@@ -31,7 +31,7 @@ const MainPanel: React.FC<MainProps> = ({
   setJobDesc,
   loading,
   filters,
-  setFilters,
+  handleFilterChange,
   handleEvaluate,
   evaluations,
   filteredConsultants,
@@ -63,7 +63,7 @@ const MainPanel: React.FC<MainProps> = ({
               <Select
                 value={filters.location}
                 onValueChange={(v) =>
-                  setFilters((f) => ({ ...f, location: v === "all" ? "" : v }))
+                  handleFilterChange("location", v === "all" ? "" : v)
                 }
               >
                 <SelectTrigger className="w-[180px] border-indigo-200 dark:border-indigo-800/30">
@@ -82,7 +82,7 @@ const MainPanel: React.FC<MainProps> = ({
               <Select
                 value={filters.jobType}
                 onValueChange={(v) =>
-                  setFilters((f) => ({ ...f, jobType: v === "all" ? "" : v }))
+                  handleFilterChange("jobType", v === "all" ? "" : v)
                 }
               >
                 <SelectTrigger className="w-[180px] border-indigo-200 dark:border-indigo-800/30">
@@ -101,7 +101,7 @@ const MainPanel: React.FC<MainProps> = ({
               <Select
                 value={filters.workplace}
                 onValueChange={(v) =>
-                  setFilters((f) => ({ ...f, workplace: v === "all" ? "" : v }))
+                  handleFilterChange("workplace", v === "all" ? "" : v)
                 }
               >
                 <SelectTrigger className="w-[180px] border-indigo-200 dark:border-indigo-800/30">
@@ -123,14 +123,16 @@ const MainPanel: React.FC<MainProps> = ({
                 placeholder="Min Experience"
                 value={filters.experience}
                 onChange={(e) =>
-                  setFilters((f) => ({ ...f, experience: e.target.value }))
+                  handleFilterChange("experience", e.target.value)
                 }
                 className="w-40 border-indigo-200 dark:border-indigo-800/30"
               />
               <Input
                 placeholder="Keyword"
                 value={filters.keyword}
-                onChange={(e) => setFilters((f) => ({ ...f, keyword: e.target.value }))}
+                onChange={(e) =>
+                  handleFilterChange("keyword", e.target.value)
+                }
                 className="w-40 border-indigo-200 dark:border-indigo-800/30"
               />
               <Button
@@ -144,7 +146,7 @@ const MainPanel: React.FC<MainProps> = ({
           </CardContent>
         </Card>
 
-        <div className="grid md:grid-cols-2 xxl:grid-cols-3 gap-6">
+        <ul className="grid md:grid-cols-2 xxl:grid-cols-3 gap-6">
           {filteredConsultants.map((consultant) => (
             <ConsultantCard
               key={consultant?.id}
@@ -153,7 +155,7 @@ const MainPanel: React.FC<MainProps> = ({
               loading={loading}
             />
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
