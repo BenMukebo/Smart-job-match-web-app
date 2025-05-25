@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { useState, useEffect } from "react";
+import { useQueryParamsSync } from "@/hooks/useQueryParamsSync";
 
-import data from "@/api/data.json";
 import mainSummary from "@/config/gemini";
 
-import SearchHistory from "@/components/custom/SearchHistory";
-import type { ConsultantData, EvaluationData, FilterQuery } from "@/lib/types";
 import MainPanel from "@/components/MainPanel";
-import { useQueryParamsSync } from "@/hooks/useQueryParamsSync";
+import SearchHistory from "@/components/custom/SearchHistory";
+import data from "@/api/data.json";
+import type { ConsultantData, EvaluationData, FilterQuery } from "@/lib/types";
 
 const Home: React.FC = () => {
   const { searchParams, updateSearchParams } = useQueryParamsSync();
@@ -48,22 +48,26 @@ const Home: React.FC = () => {
 
   const consultants: ConsultantData[] = data;
 
-  const filteredConsultants = consultants.filter((c) => {
-    const matchLocation = filters.location ? c.location === filters.location : true;
-    const matchExperience = filters.experience
-      ? c.experience >= Number(filters.experience)
-      : true;
-    const matchKeyword = filters.keyword
-      ? (c.name + c.skills.join(" ") + c.bio)
-          .toLowerCase()
-          .includes(filters.keyword.toLowerCase())
-      : true;
-    const matchJobType = filters.jobType ? c.jobType === filters.jobType : true;
-    const matchWorkplace = filters.workplace ? c.workplace === filters.workplace : true;
-    return (
-      matchLocation && matchExperience && matchKeyword && matchJobType && matchWorkplace
-    );
-  });
+  const filteredConsultants = useMemo(() => {
+    return consultants
+      .filter((c) => {
+        const matchLocation = filters.location ? c.location === filters.location : true;
+        const matchExperience = filters.experience
+          ? c.experience >= Number(filters.experience)
+          : true;
+        const matchKeyword = filters.keyword
+          ? (c.name + c.skills.join(" ") + c.bio)
+            .toLowerCase()
+            .includes(filters.keyword.toLowerCase())
+          : true;
+        const matchJobType = filters.jobType ? c.jobType === filters.jobType : true;
+        const matchWorkplace = filters.workplace ? c.workplace === filters.workplace : true;
+        return (
+          matchLocation && matchExperience && matchKeyword && matchJobType && matchWorkplace
+        );
+      }).slice(0, 10); // Limit to 10 consultants
+  }, [consultants, filters]);
+
 
   const handleEvaluate = async (desc?: string) => {
     setLoading(true);
