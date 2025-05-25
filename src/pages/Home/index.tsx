@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useMemo } from "react";
 import { useState, useEffect } from "react";
-import { useSearchParams } from 'react-router';
 
 import data from "@/api/data.json";
 import mainSummary from "@/config/gemini";
@@ -8,43 +7,29 @@ import mainSummary from "@/config/gemini";
 import SearchHistory from "@/components/custom/SearchHistory";
 import type { ConsultantData, EvaluationData, FilterQuery } from "@/lib/types";
 import MainPanel from "@/components/MainPanel";
+import { useQueryParamsSync } from "@/hooks/useQueryParamsSync";
 
 const Home: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchParams, updateSearchParams } = useQueryParamsSync();
 
   const [jobDesc, setJobDesc] = useState("");
   const [evaluations, setEvaluations] = useState<Record<number, EvaluationData>>({});
   const [loading, setLoading] = useState(false);
-  const [filters, setFilters] = useState<FilterQuery>({
-    location: searchParams.get('location') || "",
-    experience: searchParams.get('experience') || "",
-    keyword: searchParams.get('keyword') || "",
-    jobType: searchParams.get('jobType') || "",
-    workplace: searchParams.get('workplace') || "",
-  });
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [activeHistoryIdx, setActiveHistoryIdx] = useState<number | null>(null);
 
-
-  const handleFilterChange = (key: keyof FilterQuery, value: string) => {
-    setFilters((prev) => {
-      const newFilters = { ...prev, [key]: value };
-      const newParams = new URLSearchParams(searchParams); // not empty
-
-      Object.entries(newFilters).forEach(([k, v]) => {
-        if (v) {
-          newParams.set(k, v);
-        } else {
-          newParams.delete(k);
-        }
-      });
-      setSearchParams(newParams);
-      return newFilters;
-    });
-  };
+  const filters: FilterQuery = useMemo(() => {
+    return {
+      location: searchParams.get("location") || "",
+      experience: searchParams.get("experience") || "",
+      keyword: searchParams.get("keyword") || "",
+      jobType: searchParams.get("jobType") || "",
+      workplace: searchParams.get("workplace") || "",
+    };
+  }, [searchParams]);
 
   useEffect(() => {
-    const savedHistory = localStorage.getItem('searchHistory');
+    const savedHistory = localStorage.getItem("searchHistory");
     if (savedHistory) {
       try {
         const parsedHistory = JSON.parse(savedHistory);
@@ -52,40 +37,32 @@ const Home: React.FC = () => {
           setSearchHistory(parsedHistory);
         }
       } catch (e) {
-        console.error('Failed to parse search history from localStorage', e);
+        console.error("Failed to parse search history from localStorage", e);
       }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   }, [searchHistory]);
 
   const consultants: ConsultantData[] = data;
 
   const filteredConsultants = consultants.filter((c) => {
-    const matchLocation = filters.location
-      ? c.location === filters.location
-      : true;
+    const matchLocation = filters.location ? c.location === filters.location : true;
     const matchExperience = filters.experience
       ? c.experience >= Number(filters.experience)
       : true;
     const matchKeyword = filters.keyword
-      ? (
-          c.name +
-          c.skills.join(" ") +
-          c.bio
-        )
+      ? (c.name + c.skills.join(" ") + c.bio)
           .toLowerCase()
           .includes(filters.keyword.toLowerCase())
       : true;
-    const matchJobType = filters.jobType
-      ? c.jobType === filters.jobType
-      : true;
-    const matchWorkplace = filters.workplace
-      ? c.workplace === filters.workplace
-      : true;
-    return matchLocation && matchExperience && matchKeyword && matchJobType && matchWorkplace;
+    const matchJobType = filters.jobType ? c.jobType === filters.jobType : true;
+    const matchWorkplace = filters.workplace ? c.workplace === filters.workplace : true;
+    return (
+      matchLocation && matchExperience && matchKeyword && matchJobType && matchWorkplace
+    );
   });
 
   const handleEvaluate = async (desc?: string) => {
@@ -161,7 +138,7 @@ const Home: React.FC = () => {
     const newHistory = [...searchHistory];
     newHistory.splice(idx, 1);
     setSearchHistory(newHistory);
-    
+
     // Reset active index if we deleted the active item
     if (activeHistoryIdx === idx) {
       setActiveHistoryIdx(null);
@@ -178,27 +155,27 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-1 min-h-screen relative">
-    {/* Sidebar */}
-    <SearchHistory
-      searchHistory={searchHistory}
-      activeHistoryIdx={activeHistoryIdx}
-      onHistoryClick={handleHistoryClick}
-      onHistoryDelete={handleHistoryDelete}
-      onHistoryClear={handleHistoryClear}
-    />
+      {/* Sidebar */}
+      <SearchHistory
+        searchHistory={searchHistory}
+        activeHistoryIdx={activeHistoryIdx}
+        onHistoryClick={handleHistoryClick}
+        onHistoryDelete={handleHistoryDelete}
+        onHistoryClear={handleHistoryClear}
+      />
 
-    <MainPanel
-      jobDesc={jobDesc}
-      setJobDesc={setJobDesc}
-      filters={filters}
-      handleFilterChange={handleFilterChange}
-      loading={loading}
-      handleEvaluate={handleEvaluate}
-      filteredConsultants={filteredConsultants}
-      evaluations={evaluations}
-    />
-  </div>
-  )
-}
+      <MainPanel
+        jobDesc={jobDesc}
+        setJobDesc={setJobDesc}
+        filters={filters}
+        handleFilterChange={updateSearchParams}
+        loading={loading}
+        handleEvaluate={handleEvaluate}
+        filteredConsultants={filteredConsultants}
+        evaluations={evaluations}
+      />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
